@@ -7,3 +7,28 @@
   min-height: 100vh;
   padding: 0 0.5rem;
 }
+
+.timer {
+  display: flex;
+  flex-direction: row;
+  margin: 30px;
+}
+
+.timerItem {
+  width: 200px;
+  height: 480px;
+  background: url('~/src/assets/images/timer.png') no-repeat;
+  background-size: 2200px 480px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 100px;
+}
+
+.button {
+  padding: 20px;
+  font-size: 20px;
+  border-radius: 10px;
+}
