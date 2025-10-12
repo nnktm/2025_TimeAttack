@@ -11,11 +11,11 @@ const TestChallenge = () => {
     const timerId =
       isPlaying === true
         ? setInterval(() => {
-            setTimer((time) => time + 1);
-          }, 1000)
+            setTimer((time) => Math.round((time + 0.01) * 100) / 100);
+          }, 10)
         : undefined;
     return () => timerId && clearInterval(timerId);
-  }, [isPlaying, timer]);
+  }, [isPlaying]);
 
   const resetTimer = () => {
     setTimer(0);
@@ -38,25 +38,35 @@ const TestChallenge = () => {
     <div>
       <h1>testChallenge</h1>
       <div className={styles.timer}>
-        {[
-          timer / 100 > 0 ? Math.floor(timer / 100) * -220 : 0,
-          timer / 10 > 0 ? Math.floor((timer % 100) / 10) * -220 : 0,
-          timer % 10 > 0 ? (timer % 10) * -220 : 0,
-        ].map((m, i) => (
-          <div
-            key={`${i}-${m}`}
-            className={styles.timerItem}
-            style={{ backgroundPositionX: `${m}px` }}
-          />
-        ))}
+        {(() => {
+          const hundreds = Math.floor(timer / 100) % 10;
+          const tens = Math.floor(timer / 10) % 10;
+          const ones = Math.floor(timer) % 10;
+          const tenths = Math.floor((timer * 10) % 10);
+          const hundredths = Math.floor((timer * 100) % 10);
+
+          return [hundreds * -110, tens * -110, ones * -110, tenths * -77, hundredths * -77];
+        })().map((m, i) => {
+          const isDecimal = i >= 3; // 3番目以降は小数部分
+          return (
+            <div
+              key={`${i}-${m}`}
+              className={`${styles.timerItemInteger} ${isDecimal ? styles.timerItemDecimal : ''}`}
+              style={{ backgroundPositionX: `${m}px` }}
+            />
+          );
+        })}
       </div>
       <div className={styles.buttons}>
-        <button onClick={startTimer} className={styles.button}>
-          Start
-        </button>
-        <button onClick={stopTimer} className={styles.button}>
-          Stop
-        </button>
+        {isPlaying ? (
+          <button onClick={stopTimer} className={styles.button}>
+            Stop
+          </button>
+        ) : (
+          <button onClick={startTimer} className={styles.button}>
+            Start
+          </button>
+        )}
         <button onClick={resetTimer} className={styles.button}>
           Reset
         </button>

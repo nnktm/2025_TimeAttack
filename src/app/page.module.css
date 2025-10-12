@@ -11,14 +11,23 @@
 .timer {
   display: flex;
   flex-direction: row;
+  align-items: flex-end;
   margin: 30px;
 }
 
-.timerItem {
-  width: 200px;
-  height: 480px;
+.timerItemInteger {
+  width: 100px;
+  height: 240px;
   background: url('~/src/assets/images/timer.png') no-repeat;
-  background-size: 2200px 480px;
+  background-size: 1100px 240px;
+}
+
+.timerItemDecimal {
+  width: 70px;
+  height: 168px;
+  margin-bottom: 15px;
+  background: url('~/src/assets/images/timer.png') no-repeat;
+  background-size: 770px 168px;
 }
 
 .buttons {
