@@ -8,7 +8,6 @@ export async function GET() {
       orderBy: {
         sumTime: 'asc',
       },
-      take: 100, // 上位100件
     });
 
     return NextResponse.json(ranking);

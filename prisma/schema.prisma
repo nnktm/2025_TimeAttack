@@ -12,10 +12,10 @@ datasource db {
 
 model Time {
   id        String   @id @default(uuid())
-  firstTime      Int
-  secondTime     Int
-  thirdTime      Int
-  sumTime        Int
+  firstTime      Int    @default(0)
+  secondTime     Int    @default(0)
+  thirdTime      Int    @default(0)
+  sumTime        Int    @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
