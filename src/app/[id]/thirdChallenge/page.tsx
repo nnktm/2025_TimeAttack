@@ -1,15 +1,16 @@
 'use client';
 
+import LoadingModal from '@/app/components/loadingModal';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import styles from '../page.module.css';
+import styles from '../../page.module.css';
 
 const ThirdChallenge = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [timer, setTimer] = useState(0);
   const [isSubmit, setIsSubmit] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   const id = useParams().id as string;
 
   useEffect(() => {
@@ -38,19 +39,41 @@ const ThirdChallenge = () => {
     setIsPlaying(false);
   };
 
-  const handleSubmit = () => {
-    if (isSubmitting) return;
+  const handleSubmit = async () => {
+    if (isSubmitting || isLoading) return;
+    console.log('handleSubmit', { id, thirdTime: timer });
+
+    setIsLoading(true);
     setIsSubmitting(true);
-    void fetch(`/api/thirdChallenge`, {
-      method: 'PUT',
-      body: JSON.stringify({ id, thirdTime: timer }),
-    });
-    setIsSubmit(true);
-    setIsSubmitting(false);
+
+    try {
+      const response = await fetch(`/api/thirdChallenge`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id, thirdTime: timer }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit time');
+      }
+
+      const data = (await response.json()) as { newTime: { id: string; thirdTime: number } };
+      console.log('Success:', data);
+      setIsSubmit(true);
+    } catch (error) {
+      console.error('Submit Error:', error);
+      alert('タイムの保存に失敗しました');
+    } finally {
+      setIsSubmitting(false);
+      setIsLoading(false);
+    }
   };
 
   return (
     <div>
+      <div>{isLoading ? <LoadingModal isLoading={isLoading} /> : null}</div>
       <h1>thirdChallenge</h1>
       <div className={styles.timer}>
         {(() => {
@@ -86,15 +109,15 @@ const ThirdChallenge = () => {
           Reset
         </button>
         {isSubmit ? (
-          <button onClick={handleSubmit} className={styles.button}>
-            けっかをけってい
-          </button>
-        ) : (
           <button
             onClick={() => (window.location.href = `/${id}/result`)}
             className={styles.button}
           >
             けっかをみる
+          </button>
+        ) : (
+          <button onClick={handleSubmit} className={styles.button}>
+            けっかをけってい
           </button>
         )}
       </div>

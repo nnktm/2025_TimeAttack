@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     process.env.GITHUB_REPOSITORY !== undefined
       ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}`
       : '',
-  output: 'export',
+  // output: 'export', // データベース・APIルートを使用するため無効化
   trailingSlash: true,
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },

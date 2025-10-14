@@ -1,0 +1,28 @@
+.modal {
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(255 255 255 / 50%);
+}
+
+.modalContent {
+  padding: 2rem;
+  text-align: center;
+  background-color: #969fa3;
+  border: double 20px #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 48%);
+}
+
+.modalContent h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.modalContent p {
+  font-size: 1rem;
+}
