@@ -30,3 +30,37 @@
   transform: scale(1.02);
   transition: all 0.3s ease;
 }
+
+/* Timer styles for testChallenge */
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  font-family: 'Courier New', monospace;
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.timerItemInteger,
+.timerItemDecimal {
+  display: inline-block;
+  width: 55px;
+  height: 77px;
+  margin: 0 2px;
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTUwIiBoZWlnaHQ9Ijc3IiB2aWV3Qm94PSIwIDAgNTUwIDc3IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSI1NSIgaGVpZ2h0PSI3NyIgZmlsbD0iIzAwMCIvPjwvc3ZnPg==');
+  background-repeat: no-repeat;
+  background-size: 550px 77px;
+}
+
+.timerItemDecimal {
+  width: 38.5px;
+  background-size: 385px 77px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
