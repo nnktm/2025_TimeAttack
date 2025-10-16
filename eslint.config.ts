@@ -42,6 +42,13 @@ export default tseslint.config(
       ],
     },
   },
+  // Ignore Next.js generated env file rule for triple-slash reference
+  {
+    files: ['next-env.d.ts'],
+    rules: {
+      '@typescript-eslint/triple-slash-reference': 'off',
+    },
+  },
   {
     files: ['**/*.tsx'],
     plugins: {

@@ -8,9 +8,24 @@ export const PUT = async (req: Request) => {
       firstTime: number;
     };
 
+    // 現在のデータを取得
+    const currentData = await prisma.time.findUnique({
+      where: { id },
+    });
+
+    if (!currentData) {
+      return NextResponse.json({ error: 'Time not found' }, { status: 404 });
+    }
+
+    // sumTimeを計算
+    const sumTime = firstTime + currentData.secondTime + currentData.thirdTime;
+
     const newTime = await prisma.time.update({
       where: { id },
-      data: { firstTime },
+      data: {
+        firstTime,
+        sumTime,
+      },
     });
 
     return NextResponse.json({ newTime });

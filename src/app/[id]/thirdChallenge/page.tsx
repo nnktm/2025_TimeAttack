@@ -3,7 +3,7 @@
 import LoadingModal from '@/app/components/loadingModal';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import styles from '../../page.module.css';
+import styles from '../../styles/challenge.module.css';
 
 const ThirdChallenge = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -45,7 +45,6 @@ const ThirdChallenge = () => {
 
     setIsLoading(true);
     setIsSubmitting(true);
-
     try {
       const response = await fetch(`/api/thirdChallenge`, {
         method: 'PUT',

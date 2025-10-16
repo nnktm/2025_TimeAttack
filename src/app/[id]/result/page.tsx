@@ -1,18 +1,21 @@
 'use client';
 
+import LoadingModal from '@/app/components/loadingModal';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import styles from '../../page.module.css';
+import styles from '../../styles/page.module.css';
 
 const Result = () => {
   const [firstTime, setFirstTime] = useState(0);
   const [secondTime, setSecondTime] = useState(0);
   const [thirdTime, setThirdTime] = useState(0);
-  const [sumTime, setSumTime] = useState(0);
+  const [sumTime, setSumTime] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const id = useParams().id as string;
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchResult = async () => {
       // クエリパラメータでIDを渡す
       const response = await fetch(`/api/getResult?id=${id}`);
@@ -26,14 +29,14 @@ const Result = () => {
       setSecondTime(data.secondTime);
       setThirdTime(data.thirdTime);
       setSumTime(data.sumTime);
+      setIsLoading(false);
     };
     void fetchResult();
-
-    setSumTime(firstTime + secondTime + thirdTime);
-  }, [id, firstTime, secondTime, thirdTime]);
+  }, [id]);
 
   return (
     <div>
+      {isLoading ? <LoadingModal isLoading={isLoading} /> : null}
       <h1>result</h1>
       <div>
         <p>だいいちタイム: {firstTime}</p>

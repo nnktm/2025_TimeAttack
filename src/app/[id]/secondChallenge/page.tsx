@@ -3,7 +3,7 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import LoadingModal from '../../components/loadingModal';
-import styles from '../../page.module.css';
+import styles from '../../styles/challenge.module.css';
 
 const SecondChallenge = () => {
   const [isPlaying, setIsPlaying] = useState(false);

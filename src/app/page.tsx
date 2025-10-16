@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import styles from './page.module.css';
+import styles from './styles/page.module.css';
 
 export default function Home() {
   const [createdGameData, setCreatedGameData] = useState(false);

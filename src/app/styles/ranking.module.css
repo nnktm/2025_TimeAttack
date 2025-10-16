@@ -1,0 +1,155 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(to bottom, #dddde6, #b9c3dd);
+}
+
+.content {
+  width: 100%;
+  max-width: 1000px;
+}
+
+.title {
+  margin-bottom: 2rem;
+  font-size: 48px;
+  color: #00b7ff;
+  text-align: center;
+  text-shadow: 0 0 10px rgb(0 183 255 / 50%);
+}
+
+.noData {
+  margin: 3rem 0;
+  font-size: 20px;
+  color: #888;
+  text-align: center;
+}
+
+.rankingTable {
+  overflow: hidden;
+  background-color: rgb(255 255 255 / 5%);
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 30%);
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 100px repeat(3, 1fr) 150px;
+  gap: 10px;
+  padding: 15px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #00b7ff;
+}
+
+.rankingRow {
+  display: grid;
+  grid-template-columns: 100px repeat(3, 1fr) 150px;
+  gap: 10px;
+  padding: 15px 20px;
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
+  transition: all 0.3s ease;
+}
+
+.rankingRow:hover {
+  background-color: rgb(0 183 255 / 10%);
+  transform: translateX(5px);
+}
+
+.rankingRow:last-child {
+  border-bottom: none;
+}
+
+.rank1 {
+  background: linear-gradient(to right, rgb(255 215 0 / 20%), transparent);
+}
+
+.rank2 {
+  background: linear-gradient(to right, rgb(192 192 192 / 20%), transparent);
+}
+
+.rank3 {
+  background: linear-gradient(to right, rgb(205 127 50 / 20%), transparent);
+}
+
+.rankColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.rankNumber {
+  font-weight: bold;
+}
+
+.timeColumn,
+.totalColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.totalColumn {
+  font-size: 20px;
+  color: #00b7ff;
+}
+
+.homeButton {
+  display: block;
+  max-width: 300px;
+  padding: 12px 30px;
+  margin: 2rem auto 0;
+  font-size: 18px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: transparent;
+  border: double 5px #00b7ff;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.homeButton:hover {
+  color: #fff;
+  background-color: #00b7ff;
+  transform: scale(1.02);
+}
+
+/* レスポンシブ対応 */
+@media (width <= 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .tableHeader,
+  .rankingRow {
+    grid-template-columns: 60px repeat(3, 1fr) 100px;
+    gap: 5px;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .rankColumn {
+    font-size: 20px;
+  }
+
+  .timeColumn,
+  .totalColumn {
+    font-size: 14px;
+  }
+
+  .totalColumn {
+    font-size: 16px;
+  }
+}
