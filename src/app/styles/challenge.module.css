@@ -20,6 +20,7 @@
   max-width: 100%;
   padding: 1rem;
   margin: 2rem 10px;
+  background-color: white;
   border-radius: 15px;
   box-shadow: 0 8px 32px rgb(0 0 0 / 10%);
   backdrop-filter: blur(10px);
@@ -30,7 +31,6 @@
   height: 192px;
   background: url('~/src/assets/images/timer.png') no-repeat;
   background-size: 880px 192px;
-  filter: drop-shadow(0 4px 8px rgb(0 0 0 / 30%));
 }
 
 .timerItemDecimal {
@@ -39,7 +39,6 @@
   margin-bottom: 12px;
   background: url('~/src/assets/images/timer.png') no-repeat;
   background-size: 616px 134px;
-  filter: drop-shadow(0 4px 8px rgb(0 0 0 / 30%));
 }
 
 /* スマートフォン用のレスポンシブデザイン */
@@ -48,7 +47,6 @@
     width: 60px;
     height: 144px;
     background-size: 660px 144px;
-    filter: drop-shadow(0 3px 6px rgb(0 0 0 / 30%));
   }
 
   .timerItemDecimal {
@@ -56,7 +54,6 @@
     height: 100px;
     margin-bottom: 9px;
     background-size: 462px 100px;
-    filter: drop-shadow(0 3px 6px rgb(0 0 0 / 30%));
   }
 
   .timer {
