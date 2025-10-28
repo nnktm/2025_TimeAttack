@@ -84,7 +84,18 @@ const FirstChallenge = () => {
           const tenths = Math.floor((timer * 10) % 10);
           const hundredths = Math.floor((timer * 100) % 10);
 
-          return [hundreds * -110, tens * -110, ones * -110, tenths * -77, hundredths * -77];
+          // 画面サイズに応じて背景位置を調整
+          const isMobile = window.innerWidth <= 480;
+          const integerOffset = isMobile ? -66 : -88;
+          const decimalOffset = isMobile ? -46.2 : -61.6;
+
+          return [
+            hundreds * integerOffset,
+            tens * integerOffset,
+            ones * integerOffset,
+            tenths * decimalOffset,
+            hundredths * decimalOffset,
+          ];
         })().map((m, i) => {
           const isDecimal = i >= 3; // 3番目以降は小数部分
           return (
