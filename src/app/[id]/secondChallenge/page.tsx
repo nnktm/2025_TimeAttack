@@ -73,7 +73,7 @@ const SecondChallenge = () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <div>{isLoading ? <LoadingModal isLoading={isLoading} /> : null}</div>
       <h1>secondChallenge</h1>
       <div className={styles.timer}>

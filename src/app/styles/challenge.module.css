@@ -42,7 +42,7 @@
   border-radius: 10px;
 }
 
-h1 {
+.container h1 {
+  color: aqua;
   text-align: center;
-  color:aqua;
 }
