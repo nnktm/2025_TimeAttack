@@ -110,26 +110,26 @@ const SecondChallenge = () => {
       <div className={styles.buttons}>
         {isPlaying ? (
           <button onClick={stopTimer} className={styles.button}>
-            Stop
+            ストップ
           </button>
         ) : (
           <button onClick={startTimer} className={styles.button}>
-            Start
+            スタート
           </button>
         )}
         <button onClick={resetTimer} className={styles.button}>
-          Reset
+          リセット
         </button>
         {isSubmit ? (
           <button
             onClick={() => (window.location.href = `/${id}/thirdChallenge`)}
             className={styles.button}
           >
-            つぎのステージへ
+            次のステージへ
           </button>
         ) : (
           <button onClick={handleSubmit} className={styles.button}>
-            けっかをけってい
+            結果を送信
           </button>
         )}
       </div>

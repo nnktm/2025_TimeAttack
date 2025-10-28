@@ -148,32 +148,30 @@ const ThirdChallenge = () => {
               border: '1px solid #ccc',
             }}
           />
-          <small style={{ display: 'block', textAlign: 'left' }}>
-            1cmごとに0.01秒短縮（最大3.00秒まで）
-          </small>
+          <small style={{ display: 'block', textAlign: 'left' }}>1cmごとに0.01秒ボーナス</small>
         </label>
         {isPlaying ? (
           <button onClick={stopTimer} className={styles.button}>
-            Stop
+            ストップ
           </button>
         ) : (
           <button onClick={startTimer} className={styles.button}>
-            Start
+            スタート
           </button>
         )}
         <button onClick={resetTimer} className={styles.button}>
-          Reset
+          リセット
         </button>
         {isSubmit ? (
           <button
             onClick={() => (window.location.href = `/${id}/result`)}
             className={styles.button}
           >
-            けっかをみる
+            結果を表示
           </button>
         ) : (
           <button onClick={handleSubmit} className={styles.button}>
-            けっかをけってい
+            結果を送信
           </button>
         )}
       </div>

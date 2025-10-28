@@ -35,18 +35,32 @@ const Result = () => {
   }, [id]);
 
   return (
-    <div>
+    <div className={styles.container}>
       {isLoading ? <LoadingModal isLoading={isLoading} /> : null}
-      <h1>result</h1>
-      <div>
-        <p>第一ステージタイム: {firstTime.toFixed(2)}s</p>
-        <p>第二ステージタイム: {secondTime.toFixed(2)}s</p>
-        <p>第三ステージタイム: {thirdTime.toFixed(2)}s</p>
-        <p>合計タイム: {sumTime?.toFixed(2)}s</p>
+      <div className={styles.content}>
+        <h1>結果</h1>
+        <div className={styles.resultList}>
+          <div className={styles.resultItem}>
+            <span className={styles.resultLabel}>第1ステージ</span>
+            <span className={styles.resultValue}>{firstTime.toFixed(2)}s</span>
+          </div>
+          <div className={styles.resultItem}>
+            <span className={styles.resultLabel}>第2ステージ</span>
+            <span className={styles.resultValue}>{secondTime.toFixed(2)}s</span>
+          </div>
+          <div className={styles.resultItem}>
+            <span className={styles.resultLabel}>第3ステージ</span>
+            <span className={styles.resultValue}>{thirdTime.toFixed(2)}s</span>
+          </div>
+          <div className={styles.resultItem}>
+            <span className={styles.resultLabel}>合計タイム</span>
+            <span className={styles.resultValue}>{sumTime?.toFixed(2)}s</span>
+          </div>
+        </div>
+        <a href="/ranking" className={styles.button}>
+          ランキングを見る
+        </a>
       </div>
-      <a href="/ranking" className={styles.button}>
-        ランキングを見る
-      </a>
     </div>
   );
 };
