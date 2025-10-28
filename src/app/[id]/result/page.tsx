@@ -39,10 +39,10 @@ const Result = () => {
       {isLoading ? <LoadingModal isLoading={isLoading} /> : null}
       <h1>result</h1>
       <div>
-        <p>だいいちタイム: {firstTime}</p>
-        <p>だいにタイム: {secondTime}</p>
-        <p>だいさんタイム: {thirdTime}</p>
-        <p>ごうけいタイム: {sumTime}</p>
+        <p>第一ステージタイム: {firstTime.toFixed(2)}s</p>
+        <p>第二ステージタイム: {secondTime.toFixed(2)}s</p>
+        <p>第三ステージタイム: {thirdTime.toFixed(2)}s</p>
+        <p>合計タイム: {sumTime?.toFixed(2)}s</p>
       </div>
       <a href="/ranking" className={styles.button}>
         ランキングを見る

@@ -12,6 +12,7 @@ const ThirdChallenge = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const id = useParams().id as string;
+  const [distanceCm, setDistanceCm] = useState<number>(0);
 
   useEffect(() => {
     const timerId =
@@ -41,7 +42,15 @@ const ThirdChallenge = () => {
 
   const handleSubmit = async () => {
     if (isSubmitting || isLoading) return;
-    console.log('handleSubmit', { id, thirdTime: timer });
+    const deduction = Math.min((Number(distanceCm) || 0) * 0.01, 50);
+    const adjustedTime = Math.round((timer - deduction) * 100) / 100;
+    console.log('handleSubmit', {
+      id,
+      thirdTime: adjustedTime,
+      rawTime: timer,
+      distanceCm,
+      deduction,
+    });
 
     setIsLoading(true);
     setIsSubmitting(true);
@@ -51,7 +60,7 @@ const ThirdChallenge = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ id, thirdTime: timer }),
+        body: JSON.stringify({ id, thirdTime: adjustedTime }),
       });
 
       if (!response.ok) {
@@ -105,7 +114,44 @@ const ThirdChallenge = () => {
           );
         })}
       </div>
+      {(() => {
+        const deduction = Math.min((Number(distanceCm) || 0) * 0.01, 50);
+        const adjustedTime = Math.round((timer - deduction) * 100) / 100;
+        return (
+          <div style={{ textAlign: 'center', marginTop: '8px' }}>
+            <div>現在のタイム: {timer.toFixed(2)}s</div>
+            <div>飛距離ボーナス: -{deduction.toFixed(2)}s</div>
+            <div>
+              <strong>送信タイム: {adjustedTime.toFixed(2)}s</strong>
+            </div>
+          </div>
+        );
+      })()}
       <div className={styles.buttons}>
+        <label style={{ textAlign: 'center', marginBottom: '8px' }}>
+          紙飛行機の飛距離（cm）
+          <input
+            type="number"
+            inputMode="numeric"
+            min={0}
+            step={1}
+            value={distanceCm}
+            onChange={(e) => setDistanceCm(Math.max(0, Number(e.target.value)))}
+            style={{
+              display: 'block',
+              width: '100%',
+              boxSizing: 'border-box',
+              padding: '10px 12px',
+              marginTop: '6px',
+              marginBottom: '6px',
+              borderRadius: '8px',
+              border: '1px solid #ccc',
+            }}
+          />
+          <small style={{ display: 'block', textAlign: 'left' }}>
+            1cmごとに0.01秒短縮（最大3.00秒まで）
+          </small>
+        </label>
         {isPlaying ? (
           <button onClick={stopTimer} className={styles.button}>
             Stop

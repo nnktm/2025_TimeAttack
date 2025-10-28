@@ -9,6 +9,10 @@ const Ranking = () => {
   const [ranking, setRanking] = useState<
     { firstTime: number; secondTime: number; thirdTime: number; sumTime: number }[]
   >([]);
+  const [sortKey, setSortKey] = useState<'firstTime' | 'secondTime' | 'thirdTime' | 'sumTime'>(
+    'sumTime',
+  );
+  const [sortAsc, setSortAsc] = useState<boolean>(true);
 
   useEffect(() => {
     setIsLoading(true);
@@ -26,6 +30,20 @@ const Ranking = () => {
     void fetchRanking();
   }, []);
 
+  const handleSort = (key: 'firstTime' | 'secondTime' | 'thirdTime' | 'sumTime') => {
+    if (sortKey === key) {
+      setSortAsc((prev) => !prev);
+    } else {
+      setSortKey(key);
+      setSortAsc(true);
+    }
+  };
+
+  const sortedRanking = [...ranking].sort((a, b) => {
+    const diff = a[sortKey] - b[sortKey];
+    return sortAsc ? diff : -diff;
+  });
+
   const getRankDisplay = (rank: number) => {
     if (rank === 1) return '🥇';
     if (rank === 2) return '🥈';
@@ -39,7 +57,62 @@ const Ranking = () => {
       <div className={styles.content}>
         <h1 className={styles.title}>ランキング</h1>
 
-        {ranking.length === 0 ? (
+        <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginBottom: 12 }}>
+          <button
+            onClick={() => handleSort('firstTime')}
+            style={{
+              padding: '6px 10px',
+              borderRadius: 6,
+              border: '1px solid #00b7ff',
+              background: sortKey === 'firstTime' ? '#00b7ff' : 'transparent',
+              color: sortKey === 'firstTime' ? '#fff' : '#00b7ff',
+              cursor: 'pointer',
+            }}
+          >
+            第1ステージ{sortKey === 'firstTime' ? (sortAsc ? ' ↑' : ' ↓') : ''}
+          </button>
+          <button
+            onClick={() => handleSort('secondTime')}
+            style={{
+              padding: '6px 10px',
+              borderRadius: 6,
+              border: '1px solid #00b7ff',
+              background: sortKey === 'secondTime' ? '#00b7ff' : 'transparent',
+              color: sortKey === 'secondTime' ? '#fff' : '#00b7ff',
+              cursor: 'pointer',
+            }}
+          >
+            第2ステージ{sortKey === 'secondTime' ? (sortAsc ? ' ↑' : ' ↓') : ''}
+          </button>
+          <button
+            onClick={() => handleSort('thirdTime')}
+            style={{
+              padding: '6px 10px',
+              borderRadius: 6,
+              border: '1px solid #00b7ff',
+              background: sortKey === 'thirdTime' ? '#00b7ff' : 'transparent',
+              color: sortKey === 'thirdTime' ? '#fff' : '#00b7ff',
+              cursor: 'pointer',
+            }}
+          >
+            第3ステージ{sortKey === 'thirdTime' ? (sortAsc ? ' ↑' : ' ↓') : ''}
+          </button>
+          <button
+            onClick={() => handleSort('sumTime')}
+            style={{
+              padding: '6px 10px',
+              borderRadius: 6,
+              border: '1px solid #00b7ff',
+              background: sortKey === 'sumTime' ? '#00b7ff' : 'transparent',
+              color: sortKey === 'sumTime' ? '#fff' : '#00b7ff',
+              cursor: 'pointer',
+            }}
+          >
+            合計{sortKey === 'sumTime' ? (sortAsc ? ' ↑' : ' ↓') : ''}
+          </button>
+        </div>
+
+        {sortedRanking.length === 0 ? (
           <p className={styles.noData}>まだランキングデータがありません</p>
         ) : (
           <div className={styles.rankingTable}>
@@ -51,7 +124,7 @@ const Ranking = () => {
               <div className={styles.totalColumn}>合計タイム</div>
             </div>
 
-            {ranking.map((item, index) => (
+            {sortedRanking.map((item, index) => (
               <div
                 key={`${item.sumTime}-${index}`}
                 className={`${styles.rankingRow} ${

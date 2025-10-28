@@ -13,9 +13,9 @@
   padding: 2rem;
   text-align: center;
   background-color: #969fa3;
-  border: double 20px #fff;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgb(0 0 0 / 48%);
+  border: double 10px #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 48%);
 }
 
 .modalContent h1 {
