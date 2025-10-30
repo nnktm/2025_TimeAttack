@@ -57,6 +57,19 @@ const Result = () => {
             <span className={styles.resultValue}>{sumTime?.toFixed(2)}s</span>
           </div>
         </div>
+        <div>
+          {sumTime && sumTime < 40 ? (
+            <div>
+              <h2>おめでとうございます！</h2>
+              <p>お菓子を２個プレゼントします！</p>
+            </div>
+          ) : (
+            <div>
+              <h2>残念です</h2>
+              <p>お菓子を1個プレゼントします</p>
+            </div>
+          )}
+        </div>
         <a href="/ranking" className={styles.button}>
           ランキングを見る
         </a>
