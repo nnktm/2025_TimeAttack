@@ -60,16 +60,19 @@ const Result = () => {
         <div>
           {sumTime && sumTime < 40 ? (
             <div>
-              <h2>おめでとうございます！</h2>
-              <p>お菓子を２個プレゼントします！</p>
+              <h1>おめでとうございます！</h1>
+              <h2>お菓子を２個プレゼントします！</h2>
             </div>
           ) : (
             <div>
-              <h2>残念です</h2>
-              <p>お菓子を1個プレゼントします</p>
+              <h1>残念です</h1>
+              <h2>お菓子を1個プレゼントします</h2>
             </div>
           )}
         </div>
+        <a href="/" className={styles.button}>
+          ホームに戻る
+        </a>
         <a href="/ranking" className={styles.button}>
           ランキングを見る
         </a>
